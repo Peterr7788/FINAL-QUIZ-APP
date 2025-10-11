@@ -6,4 +6,5 @@ export const questions = [
   question: "What is the capital of Nigeria?",
   answers: ["Abuja", "Lagos", "Kano", "Ibadan"],
   correct: "Abuja"
+  explanation: "Abuja is the capital of Nigeria"
 }
