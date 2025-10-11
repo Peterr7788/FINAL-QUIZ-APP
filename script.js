@@ -27,6 +27,17 @@ nextBtn.addEventListener('click', () => {
   if (sel) {
     const chosen = Number(sel.value);
     if (chosen === questions[idx].answerIndex) score += questions[idx].points ?? 1;
+    const feedback = document.getElementById('feedback');
+if (chosen === questions[idx].answerIndex) {
+  score += questions[idx].points ?? 1;
+  feedback.textContent = "✅ Correct!";
+  feedback.style.color = "green";
+} else {
+  feedback.textContent = "❌ Wrong!";
+  feedback.style.color = "red";
+}
+setTimeout(() => feedback.textContent = "", 1000);
+
     idx++;
     if (idx >= questions.length) {
       container.innerHTML = '<p>Finished</p>';
