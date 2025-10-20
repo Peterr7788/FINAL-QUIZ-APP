@@ -7,6 +7,12 @@ const container = document.getElementById('question-container');
 const nextBtn = document.getElementById('next');
 const scoreDiv = document.getElementById('score');
 const scoreValue = document.getElementById('score-value');
+const progressBar = document.getElementById('progress-bar');
+
+function updateProgressBar() {
+  const progress = ((idx) / questions.length) * 100;
+  progressBar.style.width = `${progress}%`;
+}
 
 function renderQuestion(i) {
   const q = questions[i];
@@ -15,6 +21,7 @@ function renderQuestion(i) {
     nextBtn.disabled = true;
     scoreDiv.hidden = false;
     scoreValue.textContent = score;
+    progressBar.style.width = '100%';
     return;
   }
 
@@ -25,6 +32,8 @@ function renderQuestion(i) {
     ).join('')}
     <div id="feedback" style="margin-top:10px; color:#444;"></div>
   `;
+
+  updateProgressBar();
 }
 
 nextBtn.addEventListener('click', () => {
@@ -51,6 +60,7 @@ nextBtn.addEventListener('click', () => {
         scoreDiv.hidden = false;
         scoreValue.textContent = score;
         nextBtn.disabled = true;
+        updateProgressBar();
       } else {
         renderQuestion(idx);
         nextBtn.disabled = false;
@@ -63,3 +73,4 @@ nextBtn.addEventListener('click', () => {
 
 // first render
 renderQuestion(idx);
+updateProgressBar();
